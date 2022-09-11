@@ -32,6 +32,8 @@ class WordFragment : Fragment() {
             Navigation.findNavController(view).navigate(R.id.action_wordFragment_to_alphabetFragment)
         }
 
+        tv_title_text.text = "Words that Start With $alphabet"
+
 
         if (alphabet=="A") {
             words = arrayListOf(
