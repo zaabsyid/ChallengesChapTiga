@@ -101,8 +101,8 @@ class WordFragment : Fragment() {
         rv_words.adapter = wordAdapter
 
         wordAdapter.onItemClick = {
-            val choosenWord = it.data
-            val intent = Intent(Intent.ACTION_VIEW, Uri.parse("https://www.google.com/search?q=$choosenWord"))
+            val word = it.data
+            val intent = Intent(Intent.ACTION_VIEW, Uri.parse("https://www.google.com/search?q=$word"))
             startActivity(intent)
         }
     }
