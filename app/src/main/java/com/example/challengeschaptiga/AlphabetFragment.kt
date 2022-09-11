@@ -42,16 +42,21 @@ class AlphabetFragment : Fragment() {
         rv_alphabet.adapter = alphabetAdapter
 
         alphabetAdapter.onItemClick = {
+            val wordFragment = WordFragment()
+
             val sendData = Bundle()
             sendData.putSerializable("alphabet", it)
+            wordFragment.arguments = sendData
 
-            Navigation.findNavController(view).navigate(R.id.action_alphabetFragment_to_wordFragment, sendData)
+            val fragmentManager = fragmentManager
+            val fragmentTransaction = fragmentManager?.beginTransaction()
+            fragmentTransaction?.replace(R.id.container, wordFragment)
+            fragmentTransaction?.commit()
         }
 
-        fun refreshCurrentFragment() {
-            val id = Navigation.findNavController(view).currentDestination?.id
-            Navigation.findNavController(view).popBackStack(id!!,true)
-            Navigation.findNavController(view).navigate(id)
+        fun changeView() {
+            val thisFragment = AlphabetFragment()
+            activity?.supportFragmentManager?.beginTransaction()?.replace(R.id.container, thisFragment)?.commit()
         }
 
         btn_change_view.setOnClickListener {
@@ -61,17 +66,22 @@ class AlphabetFragment : Fragment() {
             rv_alphabet.adapter = adapterAlphabet
 
             adapterAlphabet.onItemClick = {
+                val wordFragment = WordFragment()
+
                 val sendData = Bundle()
                 sendData.putSerializable("alphabet", it)
+                wordFragment.arguments = sendData
 
-                Navigation.findNavController(view).navigate(R.id.action_alphabetFragment_to_wordFragment,sendData)
+                val fragmentManager = fragmentManager
+                val fragmentTransaction = fragmentManager?.beginTransaction()
+                fragmentTransaction?.replace(R.id.container, wordFragment)
+                fragmentTransaction?.commit()
             }
             btn_change_view.setImageResource(R.drawable.ic_list_view)
 
             btn_change_view.setOnClickListener {
-                refreshCurrentFragment()
+                changeView()
             }
         }
-
     }
 }

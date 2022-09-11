@@ -29,8 +29,11 @@ class WordFragment : Fragment() {
         val alphabet = getSerializableAlphabet.data
 
         btn_back.setOnClickListener {
-            Navigation.findNavController(view).navigate(R.id.action_wordFragment_to_alphabetFragment)
+            val alphabetFragment = AlphabetFragment()
+            activity?.supportFragmentManager?.beginTransaction()?.replace(R.id.container, alphabetFragment)?.commit()
         }
+
+        tv_title_text.text = "Words That Start With $alphabet"
 
 
         if (alphabet=="A") {
@@ -101,8 +104,8 @@ class WordFragment : Fragment() {
         rv_words.adapter = wordAdapter
 
         wordAdapter.onItemClick = {
-            val choosenWord = it.data
-            val intent = Intent(Intent.ACTION_VIEW, Uri.parse("https://www.google.com/search?q=$choosenWord"))
+            val word = it.data
+            val intent = Intent(Intent.ACTION_VIEW, Uri.parse("https://www.google.com/search?q=$word"))
             startActivity(intent)
         }
     }
