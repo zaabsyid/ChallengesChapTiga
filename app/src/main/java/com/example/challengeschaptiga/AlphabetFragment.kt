@@ -48,7 +48,7 @@ class AlphabetFragment : Fragment() {
             Navigation.findNavController(view).navigate(R.id.action_alphabetFragment_to_wordFragment, sendData)
         }
 
-        fun refreshCurrentFragment() {
+        fun changeView() {
             val id = Navigation.findNavController(view).currentDestination?.id
             Navigation.findNavController(view).popBackStack(id!!,true)
             Navigation.findNavController(view).navigate(id)
@@ -69,7 +69,7 @@ class AlphabetFragment : Fragment() {
             btn_change_view.setImageResource(R.drawable.ic_list_view)
 
             btn_change_view.setOnClickListener {
-                refreshCurrentFragment()
+                changeView()
             }
         }
 
